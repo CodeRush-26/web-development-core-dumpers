@@ -1,0 +1,320 @@
+/* =========================================================
+   HORMUZ COMMAND — Global Styles
+   Aesthetic: Industrial military ops center, neon-on-void
+   ========================================================= */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Google Fonts loaded via index.html */
+
+:root {
+  --void: #030712;
+  --panel: #0a1628;
+  --surface: #0f1f3d;
+  --border: #1a3a5c;
+  --accent: #00d4ff;
+  --accent-dim: #0099bb;
+  --warn: #ff8c00;
+  --danger: #ff2d55;
+  --success: #00ff8c;
+  --text: #c8dff5;
+  --text-dim: #6b8fb5;
+  --text-mute: #3a5a7c;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  background: var(--void);
+  color: var(--text);
+  font-family: 'Exo 2', sans-serif;
+}
+
+/* Scrollbars */
+::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--panel);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 2px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-dim);
+}
+
+/* ── Reusable Panel Shell ── */
+.panel {
+  background: rgba(10, 22, 40, 0.85);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+}
+
+.panel::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--accent), transparent);
+  opacity: 0.8;
+}
+
+/* ── Glitch effect for critical ── */
+@keyframes glitch {
+  0% { transform: translate(0) }
+  20% { transform: translate(-2px, 1px) }
+  40% { transform: translate(-1px, -1px) }
+  60% { transform: translate(2px, 1px) }
+  80% { transform: translate(1px, -1px) }
+  100% { transform: translate(0) }
+}
+.glitch-text {
+  animation: glitch 0.3s cubic-bezier(.25, .46, .45, .94) both infinite;
+}
+
+/* ── Scanline overlay ── */
+.scanlines::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(0deg,
+      transparent,
+      transparent 2px,
+      rgba(0, 0, 0, 0.08) 2px,
+      rgba(0, 0, 0, 0.08) 4px);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* ── Typography ── */
+.font-display {
+  font-family: 'Orbitron', monospace;
+}
+
+.font-mono {
+  font-family: 'Share Tech Mono', monospace;
+}
+
+.font-ui {
+  font-family: 'Exo 2', sans-serif;
+}
+
+/* ── Glow effects ── */
+.glow-accent {
+  text-shadow: 0 0 10px var(--accent), 0 0 20px var(--accent);
+}
+
+.glow-danger {
+  text-shadow: 0 0 10px var(--danger), 0 0 20px var(--danger);
+}
+
+.glow-warn {
+  text-shadow: 0 0 10px var(--warn);
+}
+
+.box-glow-accent {
+  box-shadow: 0 0 0 1px var(--accent), 0 0 20px rgba(0, 212, 255, 0.25);
+}
+
+.box-glow-danger {
+  box-shadow: 0 0 0 1px var(--danger), 0 0 20px rgba(255, 45, 85, 0.3);
+}
+
+/* ── Buttons ── */
+.btn {
+  font-family: 'Orbitron', monospace;
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 6px 14px;
+  border-radius: 2px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  border: 1px solid transparent;
+}
+
+.btn-primary {
+  background: rgba(0, 212, 255, 0.12);
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.btn-primary:hover {
+  background: rgba(0, 212, 255, 0.25);
+  box-shadow: 0 0 12px rgba(0, 212, 255, 0.4);
+}
+
+.btn-danger {
+  background: rgba(255, 45, 85, 0.12);
+  border-color: var(--danger);
+  color: var(--danger);
+}
+
+.btn-danger:hover {
+  background: rgba(255, 45, 85, 0.25);
+  box-shadow: 0 0 12px rgba(255, 45, 85, 0.4);
+}
+
+.btn-warn {
+  background: rgba(255, 140, 0, 0.12);
+  border-color: var(--warn);
+  color: var(--warn);
+}
+
+.btn-warn:hover {
+  background: rgba(255, 140, 0, 0.25);
+  box-shadow: 0 0 12px rgba(255, 140, 0, 0.4);
+}
+
+/* ── Status badge ── */
+.status-badge {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 2px 7px;
+  border-radius: 2px;
+  border: 1px solid currentColor;
+}
+
+/* ── Section labels ── */
+.section-label {
+  font-family: 'Orbitron', monospace;
+  font-size: 0.55rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-mute);
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 4px;
+  margin-bottom: 8px;
+}
+
+/* ── Leaflet overrides ── */
+.leaflet-container {
+  background: #020d1f !important;
+  font-family: 'Share Tech Mono', monospace !important;
+}
+
+.leaflet-popup-content-wrapper {
+  background: var(--panel) !important;
+  border: 1px solid var(--accent) !important;
+  border-radius: 2px !important;
+  color: var(--text) !important;
+  box-shadow: 0 0 20px rgba(0, 212, 255, 0.3) !important;
+}
+
+.leaflet-popup-tip {
+  background: var(--panel) !important;
+}
+
+.leaflet-control-attribution {
+  display: none !important;
+}
+
+.leaflet-bar a {
+  background: var(--panel) !important;
+  color: var(--accent) !important;
+  border-color: var(--border) !important;
+}
+
+.leaflet-draw-toolbar a {
+  background: var(--panel) !important;
+  color: var(--accent) !important;
+}
+
+/* ── Animations ── */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse-ring {
+  0% {
+    transform: scale(0.8);
+    opacity: 1;
+  }
+
+  100% {
+    transform: scale(2.2);
+    opacity: 0;
+  }
+}
+
+@keyframes ticker {
+  0% {
+    transform: translateX(100%);
+  }
+
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.3s ease forwards;
+}
+
+/* ── Alert urgency pulse ── */
+.alert-critical {
+  animation: criticalPulse 1.5s ease-in-out infinite;
+}
+
+@keyframes criticalPulse {
+
+  0%,
+  100% {
+    border-color: var(--danger);
+  }
+
+  50% {
+    border-color: transparent;
+  }
+}
+
+/* ── Custom Leaflet ship markers ── */
+.ship-marker-icon {
+  filter: drop-shadow(0 0 6px rgba(0, 212, 255, 0.8));
+}
+
+.ship-marker-icon.warning {
+  filter: drop-shadow(0 0 6px rgba(255, 140, 0, 0.8));
+}
+
+.ship-marker-icon.critical,
+.ship-marker-icon.distress {
+  filter: drop-shadow(0 0 8px rgba(255, 45, 85, 1));
+}
